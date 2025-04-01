@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Tablica przezbrojeń – TV Ready</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: #121212;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    /* MES - pełnoekranowo, bez skalowania */
+    #slide1 iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+
+    /* Excel - z ramką, ale prosty układ */
+    #slide2 {
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .excel-wrapper {
+      width: 90vw;
+      height: 80vh;
+      margin: auto;
+      background-color: #1e1e1e;
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0,191,255,0.3);
+      padding: 10px;
+    }
+
+    #slide2 iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: white;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slajd 1 – MES -->
+  <div class="slide active" id="slide1">
+    <iframe src="http://mnt.pl.europe.fujiseal.com/mes/seamers_hor.php"></iframe>
+  </div>
+
+  <!-- Slajd 2 – Excel -->
+  <div class="slide" id="slide2">
+    <div class="excel-wrapper">
+      <iframe src="https://fujisealbv-my.sharepoint.com/personal/andrzej_ostrowski_pl_fujiseal_com/_layouts/15/Doc.aspx?sourcedoc={4aca7175-7425-4af5-b0d8-1881ccb58ea2}&action=embedview&wdAllowInteractivity=False&Item=Tabela1&wdHideGridlines=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True"></iframe>
+    </div>
+  </div>
+
+  <script>
+    let current = 1;
+    const totalSlides = 2;
+
+    setInterval(() => {
+      for (let i = 1; i <= totalSlides; i++) {
+        document.getElementById('slide' + i).classList.remove('active');
+      }
+      current++;
+      if (current > totalSlides) current = 1;
+      document.getElementById('slide' + current).classList.add('active');
+    }, 20000);
+  </script>
+
+</body>
+</html>
